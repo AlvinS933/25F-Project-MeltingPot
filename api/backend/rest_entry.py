@@ -11,6 +11,11 @@ from backend.recipes.recipe_routes import recipes
 from backend.users.user_routes import users
 from backend.reviews.review_routes import reviews
 from backend.ratings.rating_routes import ratings
+from backend.categories.category_routes import categories
+from backend.tags.tag_routes import tags
+from backend.ingredients.ingredient_routes import ingredients
+from backend.collections.collection_routes import collections
+
 def create_app():
     app = Flask(__name__)
 
@@ -57,6 +62,11 @@ def create_app():
     app.register_blueprint(users, url_prefix="/u")
     app.register_blueprint(ratings, url_prefix="/rat")
     app.register_blueprint(reviews, url_prefix="/rev")
+    app.register_blueprint(categories, url_prefix="/cat")
+    app.register_blueprint(tags, url_prefix="/tag")
+    app.register_blueprint(ingredients, url_prefix="/ing")
+    app.register_blueprint(collections, url_prefix="/col")
+
 
     # Don't forget to return the app object
     return app
