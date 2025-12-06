@@ -4,7 +4,7 @@ from mysql.connector import Error
 from flask import current_app
 
 # Create a Blueprint for Recipe routes
-recipes = Blueprint("reviews", __name__)
+reviews = Blueprint("reviews", __name__)
 
 @reviews.route("/reviews", methods=["GET"])
 def get_all_reviews():
