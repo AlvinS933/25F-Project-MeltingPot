@@ -14,7 +14,9 @@ An app that lets users upload, search, and rate cooking recipies. Supports tags,
      ```bash
      cd api
      pip install -r requirements.txt
-     cd ../app
+     cd ..
+     cd app
+     cd src
      pip install -r requirements.txt
      ```
      Note that the `..` means go to the parent folder of the folder you're currently in (which is `api/` after the first command)
