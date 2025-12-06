@@ -1,4 +1,4 @@
-# MeltingPot.
+# MeltingPot
 An app that lets users upload, search, and rate cooking recipies. Supports tags, user collections, comments, and a 5-star rating system. Made for Northeastern's CS3200.
 
 ## Prerequisites
