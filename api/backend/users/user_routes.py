@@ -1,134 +1,131 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request, jsonify, make_response
 from backend.db_connection import db
-#from mysql.connector import Error
-from flask import current_app
 
-users = Blueprint("users", __name__)
+users = Blueprint('users', __name__)
 
-@users.route("/users", methods=["GET"])
+# Get all users
+@users.route('/users', methods=['GET'])
 def get_all_users():
     cursor = db.get_db().cursor()
-    the_query = '''
-        SELECT userID, username, email, bio, verified, createdAt
-        FROM Users
-    '''
-    cursor.execute(the_query)
-    theDATA = cursor.fetchall()
-    cursor.close()
+    cursor.execute('SELECT userID, username, bio, verified FROM Users')
+    users_data = cursor.fetchall()
+    return jsonify(users_data)
 
-    return jsonify(theDATA)
+# Get all administrators
+@users.route('/admins', methods=['GET'])
+def get_all_admins():
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT adminID, username FROM Administrators')
+    admins_data = cursor.fetchall()
+    return jsonify(admins_data)
 
-@users.route("/users/create", methods=["POST"])
+# Get all data analysts
+@users.route('/analysts', methods=['GET'])
+def get_all_analysts():
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT analystID, username FROM DataAnalysts')
+    analysts_data = cursor.fetchall()
+    return jsonify(analysts_data)
+
+# Get a specific user by ID
+@users.route('/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT userID, username, bio, verified FROM Users WHERE userID = %s', (user_id,))
+    user_data = cursor.fetchone()
+    
+    if not user_data:
+        return jsonify({'error': 'User not found'}), 404
+    
+    return jsonify(user_data)
+
+# Create a new user
+@users.route('/users', methods=['POST'])
 def create_user():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    bio = data.get('bio', '')
+    verified = data.get('verified', 0)
+    
+    if not all([username, password]):
+        return jsonify({'error': 'Username and password are required'}), 400
+    
+    cursor = db.get_db().cursor()
+    query = '''
+        INSERT INTO Users (username, password, bio, verified)
+        VALUES (%s, %s, %s, %s)
+    '''
+    
     try:
-        data = request.get_json()
-        cursor = db.get_db().cursor()
-        
-        the_query = '''
-            INSERT INTO Users (username, email, password, bio, verified)
-            VALUES (%s, %s, %s, %s, %s)
-        '''
-        cursor.execute(the_query, (
-            data.get('username'),
-            data.get('email'),
-            data.get('password'),
-            data.get('bio'),
-            data.get('verified', False)
-        ))
+        cursor.execute(query, (username, password, bio, verified))
         db.get_db().commit()
         
         new_user_id = cursor.lastrowid
-        cursor.close()
-        
-        return jsonify({"message": "User created successfully", "userID": new_user_id}), 201
-    except Error as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({
+            'message': 'User created successfully',
+            'userID': new_user_id
+        }), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
-@users.route("/users/<userID>", methods=["GET"])
-def get_user(userID):
-    cursor = db.get_db().cursor()
-    the_query = '''
-        SELECT userID, username, email, bio, verified, createdAt
-        FROM Users
-        WHERE userID = %s
-    '''
-    cursor.execute(the_query, (userID,))
-    theDATA = cursor.fetchone()
-    cursor.close()
-
-    if theDATA:
-        return jsonify(theDATA)
-    else:
-        return jsonify({"error": "User not found"}), 404
-
-@users.route("/users/<userID>", methods=["PUT"])
-def update_user(userID):
-    try:
-        data = request.get_json()
-        cursor = db.get_db().cursor()
-        
-        the_query = '''
-            UPDATE Users
-            SET username = %s, email = %s, bio = %s, verified = %s
-            WHERE userID = %s
-        '''
-        cursor.execute(the_query, (
-            data.get('username'),
-            data.get('email'),
-            data.get('bio'),
-            data.get('verified'),
-            userID
-        ))
-        db.get_db().commit()
-        cursor.close()
-        
-        if cursor.rowcount == 0:
-            return jsonify({"error": "User not found"}), 404
-            
-        return jsonify({"message": "User updated successfully"}), 200
-    except Error as e:
-        return jsonify({"error": str(e)}), 400
-
-@users.route("/users/<userID>", methods=["DELETE"])
-def delete_user(userID):
-    try:
-        cursor = db.get_db().cursor()
-        the_query = '''
-            DELETE FROM Users
-            WHERE userID = %s
-        '''
-        cursor.execute(the_query, (userID,))
-        db.get_db().commit()
-        cursor.close()
-        
-        if cursor.rowcount == 0:
-            return jsonify({"error": "User not found"}), 404
-            
-        return jsonify({"message": "User deleted successfully"}), 200
-    except Error as e:
-        return jsonify({"error": str(e)}), 400
-
-@users.route("/users/<userID>/statistics", methods=["GET"])
-def get_user_statistics(userID):
-    cursor = db.get_db().cursor()
-    the_query = '''
-        SELECT 
-            u.userID,
-            u.username,
-            COUNT(DISTINCT r.recipeID) as total_recipes,
-            AVG(rat.rating) as average_rating,
-            COUNT(DISTINCT rat.ratingID) as total_ratings
-        FROM Users u
-        LEFT JOIN Recipes r ON u.userID = r.userID
-        LEFT JOIN Ratings rat ON r.recipeID = rat.recipeID
-        WHERE u.userID = %s
-        GROUP BY u.userID, u.username
-    '''
-    cursor.execute(the_query, (userID,))
-    theDATA = cursor.fetchone()
-    cursor.close()
+# Update a user
+@users.route('/users/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    data = request.get_json()
     
-    if theDATA:
-        return jsonify(theDATA)
-    else:
-        return jsonify({"error": "User not found"}), 404
+    # Build dynamic update query
+    updates = []
+    values = []
+    
+    if 'username' in data:
+        updates.append('username = %s')
+        values.append(data['username'])
+    
+    if 'bio' in data:
+        updates.append('bio = %s')
+        values.append(data['bio'])
+    
+    if 'verified' in data:
+        updates.append('verified = %s')
+        values.append(data['verified'])
+    
+    if 'password' in data:
+        updates.append('password = %s')
+        values.append(data['password'])
+    
+    if not updates:
+        return jsonify({'error': 'No fields to update'}), 400
+    
+    values.append(user_id)
+    
+    cursor = db.get_db().cursor()
+    query = f"UPDATE Users SET {', '.join(updates)} WHERE userID = %s"
+    
+    try:
+        cursor.execute(query, values)
+        db.get_db().commit()
+        
+        if cursor.rowcount == 0:
+            return jsonify({'error': 'User not found'}), 404
+        
+        return jsonify({'message': 'User updated successfully'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Delete a user
+@users.route('/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    cursor = db.get_db().cursor()
+    query = 'DELETE FROM Users WHERE userID = %s'
+    
+    try:
+        cursor.execute(query, (user_id,))
+        db.get_db().commit()
+        
+        if cursor.rowcount == 0:
+            return jsonify({'error': 'User not found'}), 404
+        
+        return jsonify({'message': 'User deleted successfully'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

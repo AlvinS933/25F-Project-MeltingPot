@@ -258,3 +258,18 @@ INSERT INTO RecipeTags(recipeID, tagID)
    VALUES (1, 1),
           (2, 2),
           (3, 3);
+
+INSERT INTO users (userID, username) VALUES
+    (1, 'Pamela Halpert'),
+    (2, 'John Brown'),
+    (3, 'Bobby Altman');
+
+INSERT INTO admins (adminID, username) VALUES
+    (1, 'Robert'),
+    (2, 'Pauly'),
+    (3, 'Carly');
+
+INSERT INTO analysts (analystID, username) VALUES
+    (1, 'Jim Halpert'),
+    (2, 'The Lorax'),
+    (3, 'Jim Hooper');

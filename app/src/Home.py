@@ -1,79 +1,128 @@
 ##################################################
 # This is the main/entry-point file for the 
-# sample application for your project
+# MeltingPot Recipe Application
 ##################################################
 
-# Set up basic logging infrastructure
 import logging
 logging.basicConfig(format='%(filename)s:%(lineno)s:%(levelname)s -- %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# import the main streamlit library as well
-# as SideBarLinks function from src/modules folder
 import streamlit as st
 from modules.nav import SideBarLinks
+import requests
 
-# streamlit supports reguarl and wide layout (how the controls
-# are organized/displayed on the screen).
 st.set_page_config(layout = 'wide')
 
-# If a user is at this page, we assume they are not 
-# authenticated.  So we change the 'authenticated' value
-# in the streamlit session_state to false. 
 st.session_state['authenticated'] = False
 
-# Use the SideBarLinks function from src/modules/nav.py to control
-# the links displayed on the left-side panel. 
-# IMPORTANT: ensure src/.streamlit/config.toml sets
-# showSidebarNavigation = false in the [client] section
 SideBarLinks(show_home=True)
 
-# ***************************************************
-#    The major content of this page
-# ***************************************************
-
-# set the title of the page and provide a simple prompt. 
 logger.info("Loading the Home page of the app")
-st.title('CS 3200 Project Template')
+st.title('MeltingPot Recipe Sharing Platform')
 st.write('\n\n')
-# st.write('### Overview:')
-# st.write('\n')
-st.write('#### HI! As which user would you like to log in?')
+st.write('### Welcome! Please select your user type and login')
 
-# For each of the user personas for which we are implementing
-# functionality, we put a button on the screen that the user 
-# can click to MIMIC logging in as that mock user. 
+# Fetch users from different tables
+try:
+    users_response = requests.get('http://web-api:4000/u/users')
+    users = users_response.json() if users_response.status_code == 200 else []
+except:
+    users = [{'userID': 1, 'username': 'Pamela Halpert'}, {'userID': 2, 'username': 'John Brown'}, {'userID': 3, 'username': 'Bobby Altman'}]
 
-if st.button("Act as John, a Political Strategy Advisor", 
-            type = 'primary', 
-            use_container_width=True):
-    # when user clicks the button, they are now considered authenticated
+try:
+    admins_response = requests.get('http://web-api:4000/u/admins')
+    admins = admins_response.json() if admins_response.status_code == 200 else []
+except:
+    admins = [{'adminID': 1, 'username': 'Robert'}, {'adminID': 2, 'username': 'Pauly'}, {'adminID': 3, 'username': 'Carly'}]
+
+try:
+    analysts_response = requests.get('http://web-api:4000/u/analysts')
+    analysts = analysts_response.json() if analysts_response.status_code == 200 else []
+except:
+    analysts = [{'analystID': 1, 'username': 'Jim Halpert'}, {'analystID': 2, 'username': 'The Lorax'}, {'analystID': 3, 'username': 'Jim Hooper'}]
+
+# Recipe Creator (Regular User)
+st.write('#### 👨‍🍳 Recipe Creator')
+selected_creator = st.selectbox(
+    'Select a Recipe Creator',
+    options=[f"{u['username']} (ID: {u['userID']})" for u in users],
+    key='creator_select'
+)
+
+if st.button("Login as Recipe Creator", type='primary', use_container_width=True):
+    user_id = int(selected_creator.split('ID: ')[1].rstrip(')'))
+    username = selected_creator.split(' (ID:')[0]
+    
     st.session_state['authenticated'] = True
-    # we set the role of the current user
-    st.session_state['role'] = 'pol_strat_advisor'
-    # we add the first name of the user (so it can be displayed on 
-    # subsequent pages). 
-    st.session_state['first_name'] = 'John'
-    # finally, we ask streamlit to switch to another page, in this case, the 
-    # landing page for this particular user type
-    logger.info("Logging in as Political Strategy Advisor Persona")
-    st.switch_page('pages/00_Pol_Strat_Home.py')
+    st.session_state['role'] = 'recipe_creator'
+    st.session_state['first_name'] = username.split()[0]
+    st.session_state['user_id'] = user_id
+    st.session_state['username'] = username
+    logger.info(f"Logging in as Recipe Creator: {username}")
+    st.switch_page('pages/00_Recipe_Creator_Home.py')
 
-if st.button('Act as Mohammad, an USAID worker', 
-            type = 'primary', 
-            use_container_width=True):
+st.write('---')
+
+# Recipe Browser (Regular User)
+st.write('#### 🔍 Recipe Browser')
+selected_browser = st.selectbox(
+    'Select a Recipe Browser',
+    options=[f"{u['username']} (ID: {u['userID']})" for u in users],
+    key='browser_select'
+)
+
+if st.button('Login as Recipe Browser', type='primary', use_container_width=True):
+    user_id = int(selected_browser.split('ID: ')[1].rstrip(')'))
+    username = selected_browser.split(' (ID:')[0]
+    
     st.session_state['authenticated'] = True
-    st.session_state['role'] = 'usaid_worker'
-    st.session_state['first_name'] = 'Mohammad'
-    st.switch_page('pages/10_USAID_Worker_Home.py')
+    st.session_state['role'] = 'recipe_browser'
+    st.session_state['first_name'] = username.split()[0]
+    st.session_state['user_id'] = user_id
+    st.session_state['username'] = username
+    logger.info(f"Logging in as Recipe Browser: {username}")
+    st.switch_page('pages/10_Recipe_Browser_Home.py')
 
-if st.button('Act as System Administrator', 
-            type = 'primary', 
-            use_container_width=True):
+st.write('---')
+
+# Data Analyst
+st.write('#### 📊 Data Analyst')
+selected_analyst = st.selectbox(
+    'Select a Data Analyst',
+    options=[f"{a['username']} (ID: {a['analystID']})" for a in analysts],
+    key='analyst_select'
+)
+
+if st.button('Login as Data Analyst', type='primary', use_container_width=True):
+    analyst_id = int(selected_analyst.split('ID: ')[1].rstrip(')'))
+    username = selected_analyst.split(' (ID:')[0]
+    
+    st.session_state['authenticated'] = True
+    st.session_state['role'] = 'data_analyst'
+    st.session_state['first_name'] = username.split()[0]
+    st.session_state['analyst_id'] = analyst_id
+    st.session_state['username'] = username
+    logger.info(f"Logging in as Data Analyst: {username}")
+    st.switch_page('pages/30_Data_Analyst_Home.py')
+
+st.write('---')
+
+# System Administrator
+st.write('#### 🛡️ System Administrator')
+selected_admin = st.selectbox(
+    'Select an Administrator',
+    options=[f"{a['username']} (ID: {a['adminID']})" for a in admins],
+    key='admin_select'
+)
+
+if st.button('Login as Administrator', type='primary', use_container_width=True):
+    admin_id = int(selected_admin.split('ID: ')[1].rstrip(')'))
+    username = selected_admin.split(' (ID:')[0]
+    
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'administrator'
-    st.session_state['first_name'] = 'SysAdmin'
+    st.session_state['first_name'] = username.split()[0]
+    st.session_state['admin_id'] = admin_id
+    st.session_state['username'] = username
+    logger.info(f"Logging in as Administrator: {username}")
     st.switch_page('pages/20_Admin_Home.py')
-
-
-

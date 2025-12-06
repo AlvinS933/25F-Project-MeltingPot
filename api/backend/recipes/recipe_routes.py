@@ -1,262 +1,201 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request, jsonify, make_response
 from backend.db_connection import db
-from mysql.connector import Error
-from flask import current_app
 
-# Create a Blueprint for Recipe routes
-recipes = Blueprint("recipes", __name__)
+recipes = Blueprint('recipes', __name__)
 
-@recipes.route("/recipes", methods=["GET"])
+# Get all recipes
+@recipes.route('/recipes', methods=['GET'])
 def get_all_recipes():
     cursor = db.get_db().cursor()
-    the_query = '''
-        SELECT userID, catID, name, description, steps, picture, difficulty, recipeID
-        FROM Recipes
-    '''
-    cursor.execute(the_query)
-    theDATA = cursor.fetchall()
-    cursor.close()
+    cursor.execute('SELECT * FROM Recipes')
+    recipes_data = cursor.fetchall()
+    return jsonify(recipes_data)
 
-    return jsonify(theDATA)
+# Get recipes by user
+@recipes.route('/recipes/user/<int:user_id>', methods=['GET'])
+def get_recipes_by_user(user_id):
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT * FROM Recipes WHERE userID = %s', (user_id,))
+    recipes_data = cursor.fetchall()
+    return jsonify(recipes_data)
 
-@recipes.route("/recipes/create", methods=["POST"])
+# Get a specific recipe by ID
+@recipes.route('/recipes/<int:recipe_id>', methods=['GET'])
+def get_recipe(recipe_id):
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT * FROM Recipes WHERE recipeID = %s', (recipe_id,))
+    recipe_data = cursor.fetchone()
+    
+    if not recipe_data:
+        return jsonify({'error': 'Recipe not found'}), 404
+    
+    return jsonify(recipe_data)
+
+# Create a new recipe
+@recipes.route('/recipes', methods=['POST'])
 def create_recipe():
+    data = request.get_json()
+    user_id = data.get('userID')
+    cat_id = data.get('catID')
+    name = data.get('name')
+    description = data.get('description', '')
+    steps = data.get('steps', '')
+    picture = data.get('picture')
+    difficulty = data.get('difficulty', 3)
+    
+    if not all([user_id, cat_id, name]):
+        return jsonify({'error': 'Missing required fields'}), 400
+    
+    cursor = db.get_db().cursor()
+    query = '''
+        INSERT INTO Recipes (userID, catID, name, description, steps, picture, difficulty)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+    '''
+    
     try:
-        data = request.get_json()
-        cursor = db.get_db().cursor()
-        
-        the_query = '''
-            INSERT INTO Recipes (userID, catID, name, description, steps, picture, difficulty)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
-        '''
-        cursor.execute(the_query, (
-            data.get('userID'),
-            data.get('catID'),
-            data.get('name'),
-            data.get('description'),
-            data.get('steps'),
-            data.get('picture'),
-            data.get('difficulty')
-        ))
+        cursor.execute(query, (user_id, cat_id, name, description, steps, picture, difficulty))
         db.get_db().commit()
         
         new_recipe_id = cursor.lastrowid
-        cursor.close()
-        
-        return jsonify({"message": "Recipe created successfully", "recipeID": new_recipe_id}), 201
-    except Error as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({
+            'message': 'Recipe created successfully',
+            'recipeID': new_recipe_id
+        }), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
-@recipes.route("/recipes/<recipeID>", methods=["GET"])
-def get_recipe(recipeID):
+# Update a recipe
+@recipes.route('/recipes/<int:recipe_id>', methods=['PUT'])
+def update_recipe(recipe_id):
+    data = request.get_json()
+    
+    updates = []
+    values = []
+    
+    if 'name' in data:
+        updates.append('name = %s')
+        values.append(data['name'])
+    
+    if 'description' in data:
+        updates.append('description = %s')
+        values.append(data['description'])
+    
+    if 'steps' in data:
+        updates.append('steps = %s')
+        values.append(data['steps'])
+    
+    if 'difficulty' in data:
+        updates.append('difficulty = %s')
+        values.append(data['difficulty'])
+    
+    if 'catID' in data:
+        updates.append('catID = %s')
+        values.append(data['catID'])
+    
+    if 'picture' in data:
+        updates.append('picture = %s')
+        values.append(data['picture'])
+    
+    if not updates:
+        return jsonify({'error': 'No fields to update'}), 400
+    
+    values.append(recipe_id)
+    
     cursor = db.get_db().cursor()
-    the_query = '''
-        SELECT userID, catID, name, description, steps, picture, difficulty, recipeID
-        FROM Recipes
-        WHERE recipeID = %s
-    '''
-    cursor.execute(the_query, (recipeID,))
-    theDATA = cursor.fetchone()
-    cursor.close()
-
-    if theDATA:
-        return jsonify(theDATA)
-    else:
-        return jsonify({"error": "Recipe not found"}), 404
-
-@recipes.route("/recipes/<recipeID>", methods=["PUT"])
-def update_recipe(recipeID):
+    query = f"UPDATE Recipes SET {', '.join(updates)} WHERE recipeID = %s"
+    
     try:
-        data = request.get_json()
-        cursor = db.get_db().cursor()
-        
-        the_query = '''
-            UPDATE Recipes
-            SET name = %s, description = %s, steps = %s, picture = %s, 
-                difficulty = %s, catID = %s
-            WHERE recipeID = %s
-        '''
-        cursor.execute(the_query, (
-            data.get('name'),
-            data.get('description'),
-            data.get('steps'),
-            data.get('picture'),
-            data.get('difficulty'),
-            data.get('catID'),
-            recipeID
-        ))
+        cursor.execute(query, values)
         db.get_db().commit()
-        cursor.close()
         
         if cursor.rowcount == 0:
-            return jsonify({"error": "Recipe not found"}), 404
-            
-        return jsonify({"message": "Recipe updated successfully"}), 200
-    except Error as e:
-        return jsonify({"error": str(e)}), 400
+            return jsonify({'error': 'Recipe not found'}), 404
+        
+        return jsonify({'message': 'Recipe updated successfully'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
-@recipes.route("/recipes/<recipeID>", methods=["DELETE"])
-def delete_recipe(recipeID):
+# Delete a recipe
+@recipes.route('/recipes/<int:recipe_id>', methods=['DELETE'])
+def delete_recipe(recipe_id):
+    cursor = db.get_db().cursor()
+    query = 'DELETE FROM Recipes WHERE recipeID = %s'
+    
     try:
-        cursor = db.get_db().cursor()
-        the_query = '''
-            DELETE FROM Recipes
-            WHERE recipeID = %s
-        '''
-        cursor.execute(the_query, (recipeID,))
+        cursor.execute(query, (recipe_id,))
         db.get_db().commit()
-        cursor.close()
         
         if cursor.rowcount == 0:
-            return jsonify({"error": "Recipe not found"}), 404
-            
-        return jsonify({"message": "Recipe deleted successfully"}), 200
-    except Error as e:
-        return jsonify({"error": str(e)}), 400
+            return jsonify({'error': 'Recipe not found'}), 404
+        
+        return jsonify({'message': 'Recipe deleted successfully'}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
-@recipes.route("/recipes/search", methods=["GET"])
-def search_recipes():
-    name = request.args.get('name')
-    category = request.args.get('category')
-    difficulty = request.args.get('difficulty')
-    
+# Get ingredients for a recipe
+@recipes.route('/recipes/<int:recipe_id>/ingredients', methods=['GET'])
+def get_recipe_ingredients(recipe_id):
     cursor = db.get_db().cursor()
-    
-    conditions = []
-    params = []
-    
-    if name:
-        conditions.append("name LIKE %s")
-        params.append(f"%{name}%")
-    if category:
-        conditions.append("catID = %s")
-        params.append(category)
-    if difficulty:
-        conditions.append("difficulty = %s")
-        params.append(difficulty)
-    
-    where_clause = " AND ".join(conditions) if conditions else "1=1"
-    
-    the_query = f'''
-        SELECT userID, catID, name, description, steps, picture, difficulty, recipeID
-        FROM Recipes
-        WHERE {where_clause}
-    '''
-    
-    cursor.execute(the_query, tuple(params))
-    theDATA = cursor.fetchall()
-    cursor.close()
-    
-    return jsonify(theDATA)
-
-@recipes.route("/recipes/user/<userID>", methods=["GET"])
-def get_user_recipes(userID):
-    cursor = db.get_db().cursor()
-    the_query = '''
-        SELECT userID, catID, name, description, steps, picture, difficulty, recipeID
-        FROM Recipes
-        WHERE userID = %s
-    '''
-    cursor.execute(the_query, (userID,))
-    theDATA = cursor.fetchall()
-    cursor.close()
-    
-    return jsonify(theDATA)
-
-@recipes.route("/recipes/<recipeID>/ingredients", methods=["GET"])
-def get_recipe_ingredients(recipeID):
-    cursor = db.get_db().cursor()
-    the_query = '''
-        SELECT ri.ingrID, i.name, ri.quantity, ri.unit
-        FROM RecipeIngredients ri
-        JOIN Ingredients i ON ri.ingrID = i.ingrID
+    query = '''
+        SELECT i.ingrID, i.name, i.description
+        FROM Ingredients i
+        JOIN RecipeIngredients ri ON i.ingrID = ri.ingrID
         WHERE ri.recipeID = %s
     '''
-    cursor.execute(the_query, (recipeID,))
-    theDATA = cursor.fetchall()
-    cursor.close()
+    cursor.execute(query, (recipe_id,))
+    ingredients = cursor.fetchall()
+    return jsonify(ingredients)
+
+# Add ingredient to recipe
+@recipes.route('/recipes/ingredients', methods=['POST'])
+def add_recipe_ingredient():
+    data = request.get_json()
+    recipe_id = data.get('recipeID')
+    ingr_id = data.get('ingrID')
     
-    return jsonify(theDATA)
-
-@recipes.route("/recipes/<recipeID>/ingredients", methods=["POST"])
-def add_recipe_ingredients(recipeID):
-    try:
-        data = request.get_json()
-        cursor = db.get_db().cursor()
-        
-        the_query = '''
-            INSERT INTO RecipeIngredients (recipeID, ingrID, quantity, unit)
-            VALUES (%s, %s, %s, %s)
-        '''
-        cursor.execute(the_query, (
-            recipeID,
-            data.get('ingrID'),
-            data.get('quantity'),
-            data.get('unit')
-        ))
-        db.get_db().commit()
-        cursor.close()
-        
-        return jsonify({"message": "Ingredient added successfully"}), 201
-    except Error as e:
-        return jsonify({"error": str(e)}), 400
-
-@recipes.route("/recipes/<recipeID>/ingredients", methods=["PUT"])
-def update_recipe_ingredients(recipeID):
-    try:
-        data = request.get_json()
-        cursor = db.get_db().cursor()
-        
-        the_query = '''
-            UPDATE RecipeIngredients
-            SET quantity = %s, unit = %s
-            WHERE recipeID = %s AND ingrID = %s
-        '''
-        cursor.execute(the_query, (
-            data.get('quantity'),
-            data.get('unit'),
-            recipeID,
-            data.get('ingrID')
-        ))
-        db.get_db().commit()
-        cursor.close()
-        
-        if cursor.rowcount == 0:
-            return jsonify({"error": "Ingredient not found for this recipe"}), 404
-            
-        return jsonify({"message": "Ingredient updated successfully"}), 200
-    except Error as e:
-        return jsonify({"error": str(e)}), 400
-
-@recipes.route("/recipes/<recipeID>/tags", methods=["GET"])
-def get_recipe_tags(recipeID):
+    if not all([recipe_id, ingr_id]):
+        return jsonify({'error': 'Missing required fields'}), 400
+    
     cursor = db.get_db().cursor()
-    the_query = '''
-        SELECT rt.tagID, t.name
-        FROM RecipeTags rt
-        JOIN Tags t ON rt.tagID = t.tagID
+    query = 'INSERT INTO RecipeIngredients (recipeID, ingrID) VALUES (%s, %s)'
+    
+    try:
+        cursor.execute(query, (recipe_id, ingr_id))
+        db.get_db().commit()
+        return jsonify({'message': 'Ingredient added to recipe'}), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Get tags for a recipe
+@recipes.route('/recipes/<int:recipe_id>/tags', methods=['GET'])
+def get_recipe_tags(recipe_id):
+    cursor = db.get_db().cursor()
+    query = '''
+        SELECT t.tagID, t.name, t.description
+        FROM Tags t
+        JOIN RecipeTags rt ON t.tagID = rt.tagID
         WHERE rt.recipeID = %s
     '''
-    cursor.execute(the_query, (recipeID,))
-    theDATA = cursor.fetchall()
-    cursor.close()
-    
-    return jsonify(theDATA)
+    cursor.execute(query, (recipe_id,))
+    tags = cursor.fetchall()
+    return jsonify(tags)
 
-@recipes.route("/recipes/<recipeID>/tags", methods=["POST"])
-def add_recipe_tag(recipeID):
+# Add tag to recipe
+@recipes.route('/recipes/tags', methods=['POST'])
+def add_recipe_tag():
+    data = request.get_json()
+    recipe_id = data.get('recipeID')
+    tag_id = data.get('tagID')
+    
+    if not all([recipe_id, tag_id]):
+        return jsonify({'error': 'Missing required fields'}), 400
+    
+    cursor = db.get_db().cursor()
+    query = 'INSERT INTO RecipeTags (recipeID, tagID) VALUES (%s, %s)'
+    
     try:
-        data = request.get_json()
-        cursor = db.get_db().cursor()
-        
-        the_query = '''
-            INSERT INTO RecipeTags (recipeID, tagID)
-            VALUES (%s, %s)
-        '''
-        cursor.execute(the_query, (recipeID, data.get('tagID')))
+        cursor.execute(query, (recipe_id, tag_id))
         db.get_db().commit()
-        cursor.close()
-        
-        return jsonify({"message": "Tag added successfully"}), 201
-    except Error as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({'message': 'Tag added to recipe'}), 201
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
