@@ -1,8 +1,5 @@
-# Fall 2025 CS 3200 Project Template
-
-This is a template repo for Dr. Fontenot's Fall 2025 CS 3200 Course Project. 
-
-It includes most of the infrastructure setup (containers), sample databases, and example UI pages. Explore it fully and ask questions!
+# MeltingPot.
+An app that lets users upload, search, and rate cooking recipies. Supports tags, user collections, comments, and a 5-star rating system. Made for Northeastern's CS3200.
 
 ## Prerequisites
 
