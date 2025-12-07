@@ -1,4 +1,4 @@
-use 'MeltingPot';
+use MeltingPot;
 
 insert into Administrators (adminID, username, password) values (11, 'Christopher', 'Pfeffel');
 insert into Administrators (adminID, username, password) values (22, 'Carey', 'Adamo');
