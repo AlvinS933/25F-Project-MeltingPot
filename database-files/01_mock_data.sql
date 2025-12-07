@@ -54,6 +54,48 @@ insert into Users (userID, username, password, bio) values (39, 'Glennie', 'kJ6.
 insert into Users (userID, username, password, bio) values (40, 'Francine', 'eW2,@$@fTFHf#Fl', 'Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
 
 
+insert into Categories (catID, name, description) values (14, 'Organic Tomato Soup', 'Hearty tomato soup made from organic ingredients.');
+insert into Categories (catID, name, description) values (14, 'Avocados', 'Fresh, creamy avocados ideal for salads and guacamole.');
+insert into Categories (catID, name, description) values (13, 'Ceramic Planter Set', 'Set of decorative ceramic planters for indoor plants.');
+insert into Categories (catID, name, description) values (9, 'Honeycrisp Apple Chips', 'Crispy and sweet dried apple slices');
+insert into Categories (catID, name, description) values (7, 'Patterned Knit Scarf', 'Add a pop of color with this stylish patterned knit scarf.');
+insert into Categories (catID, name, description) values (3, 'Maple Bacon Potato Chips', 'Savory potato chips with a hint of maple sweetness and crispy bacon flavor.');
+insert into Categories (catID, name, description) values (3, 'Pet Travel Backpack Carrier', 'Comfortable carry for pets while hiking or traveling.');
+insert into Categories (catID, name, description) values (9, 'Coffee Grinder', 'Burr coffee grinder for fresh ground coffee.');
+insert into Categories (catID, name, description) values (8, 'Organic Vanilla Bean Ice Cream', 'Creamy ice cream made with real vanilla beans, perfect for desserts.');
+insert into Categories (catID, name, description) values (4, 'Multicolored LED Strip Lights', 'Flexible LED lights for creative home lighting designs.');
+insert into Categories (catID, name, description) values (14, 'Mechanical Pencil Set', 'Precision pencils for drawing, sketching, and writing.');
+insert into Categories (catID, name, description) values (7, 'Brown Sugar', 'Raw brown sugar, perfect for baking or sweetening drinks.');
+insert into Categories (catID, name, description) values (12, 'Shredded Cheese', 'Blend of cheddar and mozzarella cheese, great for recipes.');
+insert into Categories (catID, name, description) values (6, 'Granola', 'Crunchy and flavorful mix of oats and honey.');
+insert into Categories (catID, name, description) values (14, 'Adjustable Skipping Rope', 'Durable skipping rope with adjustable length for workouts.');
+insert into Categories (catID, name, description) values (12, 'Water Bottle with Built-in Fruit Infuser', 'Stay hydrated with refreshing flavored water.');
+insert into Categories (catID, name, description) values (3, 'Sweet Potatoes (organic)', 'Fresh organic sweet potatoes, great for roasting or mashing.');
+insert into Categories (catID, name, description) values (12, 'Kids'' Crafting Station', 'Complete station with supplies for kids'' art projects.');
+insert into Categories (catID, name, description) values (3, 'Pumpkin Spice Coffee', 'Coffee blend infused with pumpkin spice, perfect for fall.');
+insert into Categories (catID, name, description) values (10, 'Lightweight Workout Tank', 'Breathable tank top perfect for workouts or casual wear.');
+insert into Categories (catID, name, description) values (7, 'Beef Tacos', 'Pre-seasoned beef mix for delicious tacos, just heat and serve.');
+insert into Categories (catID, name, description) values (13, 'Men''s Waterproof Hiking Boots', 'Durable boots designed for outdoor hiking and activities.');
+insert into Categories (catID, name, description) values (14, 'Drone', 'Beginner-friendly drone with HD camera.');
+insert into Categories (catID, name, description) values (8, 'Ethically-Sourced Coffee Beans', 'Freshly roasted coffee beans with rich flavor.');
+insert into Categories (catID, name, description) values (12, 'Classic Black Trousers', 'Timeless black trousers for a smart and sophisticated look.');
+insert into Categories (catID, name, description) values (9, 'Non-Toxic Concrete Sealer', 'Eco-friendly sealer for protecting concrete surfaces.');
+insert into Categories (catID, name, description) values (9, 'Cinnamon Rolls', 'Sweet and gooey cinnamon rolls, ready to bake.');
+insert into Categories (catID, name, description) values (3, 'Pumpkin Seeds', 'Crunchy roasted pumpkin seeds, great for snacking.');
+insert into Categories (catID, name, description) values (10, 'Garlic and Herb Cream Cheese', 'Spreadable cream cheese with garlic and herbs.');
+insert into Categories (catID, name, description) values (10, 'Cheesy Broccoli Soup Mix', 'Just add water for a hearty cheese and broccoli soup in minutes.');
+insert into Categories (catID, name, description) values (3, 'Fall-Themed Table Runner', 'Decorative table runner perfect for autumn gatherings.');
+insert into Categories (catID, name, description) values (14, 'Miso Soup Mix', 'Instant miso soup mix, just add hot water for a warm meal.');
+insert into Categories (catID, name, description) values (4, 'Wireless Earbuds', 'True wireless earbuds with touch control.');
+insert into Categories (catID, name, description) values (9, 'Decorative LED Neon Sign', 'Bright, vibrant sign to add flair to any space.');
+insert into Categories (catID, name, description) values (10, 'Sweet Chili Thai Sauce', 'Tangy sweet chili sauce perfect for dipping or cooking.');
+insert into Categories (catID, name, description) values (4, 'Cereal Dispenser with Portion Control', 'Maintain freshness and dispense cereal easily.');
+insert into Categories (catID, name, description) values (14, 'Savory Italian Herbs', 'A blend of dried Italian herbs for cooking.');
+insert into Categories (catID, name, description) values (4, 'Savory Pumpkin Soup', 'Creamy pumpkin soup with spices');
+insert into Categories (catID, name, description) values (5, 'Comfortable Bed Pillow', 'Supportive pillow designed for a good night''s sleep.');
+insert into Categories (catID, name, description) values (9, 'Oats', 'Organic rolled oats, great for breakfast or baking.');
+
+
 insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (72, 1, 'Tommy', 'A retro-style button-down shirt with a relaxed fit.', 'error: divided by 0', 'NZ4290', 3, 4);
 insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (57, 2, 'Salim', 'Stackable containers for organizing snacks and treats.', 'error: divided by 0', 'AA8769', 4, 4);
 insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (96, 3, 'Dion', 'Reusable microfiber cloths for environmentally friendly cleaning.', 'error: divided by 0', 'LA7284', 4, 13);
@@ -181,46 +223,7 @@ insert into Tags (tagID, name, description) values (3, 'Training Soccer Ball', '
 insert into Tags (tagID, name, description) values (10, 'Teriyaki Chicken Skewers', 'Grilled chicken skewers glazed with teriyaki sauce.');
 
 
-insert into Categories (catID, name, description) values (14, 'Organic Tomato Soup', 'Hearty tomato soup made from organic ingredients.');
-insert into Categories (catID, name, description) values (14, 'Avocados', 'Fresh, creamy avocados ideal for salads and guacamole.');
-insert into Categories (catID, name, description) values (13, 'Ceramic Planter Set', 'Set of decorative ceramic planters for indoor plants.');
-insert into Categories (catID, name, description) values (9, 'Honeycrisp Apple Chips', 'Crispy and sweet dried apple slices');
-insert into Categories (catID, name, description) values (7, 'Patterned Knit Scarf', 'Add a pop of color with this stylish patterned knit scarf.');
-insert into Categories (catID, name, description) values (3, 'Maple Bacon Potato Chips', 'Savory potato chips with a hint of maple sweetness and crispy bacon flavor.');
-insert into Categories (catID, name, description) values (3, 'Pet Travel Backpack Carrier', 'Comfortable carry for pets while hiking or traveling.');
-insert into Categories (catID, name, description) values (9, 'Coffee Grinder', 'Burr coffee grinder for fresh ground coffee.');
-insert into Categories (catID, name, description) values (8, 'Organic Vanilla Bean Ice Cream', 'Creamy ice cream made with real vanilla beans, perfect for desserts.');
-insert into Categories (catID, name, description) values (4, 'Multicolored LED Strip Lights', 'Flexible LED lights for creative home lighting designs.');
-insert into Categories (catID, name, description) values (14, 'Mechanical Pencil Set', 'Precision pencils for drawing, sketching, and writing.');
-insert into Categories (catID, name, description) values (7, 'Brown Sugar', 'Raw brown sugar, perfect for baking or sweetening drinks.');
-insert into Categories (catID, name, description) values (12, 'Shredded Cheese', 'Blend of cheddar and mozzarella cheese, great for recipes.');
-insert into Categories (catID, name, description) values (6, 'Granola', 'Crunchy and flavorful mix of oats and honey.');
-insert into Categories (catID, name, description) values (14, 'Adjustable Skipping Rope', 'Durable skipping rope with adjustable length for workouts.');
-insert into Categories (catID, name, description) values (12, 'Water Bottle with Built-in Fruit Infuser', 'Stay hydrated with refreshing flavored water.');
-insert into Categories (catID, name, description) values (3, 'Sweet Potatoes (organic)', 'Fresh organic sweet potatoes, great for roasting or mashing.');
-insert into Categories (catID, name, description) values (12, 'Kids'' Crafting Station', 'Complete station with supplies for kids'' art projects.');
-insert into Categories (catID, name, description) values (3, 'Pumpkin Spice Coffee', 'Coffee blend infused with pumpkin spice, perfect for fall.');
-insert into Categories (catID, name, description) values (10, 'Lightweight Workout Tank', 'Breathable tank top perfect for workouts or casual wear.');
-insert into Categories (catID, name, description) values (7, 'Beef Tacos', 'Pre-seasoned beef mix for delicious tacos, just heat and serve.');
-insert into Categories (catID, name, description) values (13, 'Men''s Waterproof Hiking Boots', 'Durable boots designed for outdoor hiking and activities.');
-insert into Categories (catID, name, description) values (14, 'Drone', 'Beginner-friendly drone with HD camera.');
-insert into Categories (catID, name, description) values (8, 'Ethically-Sourced Coffee Beans', 'Freshly roasted coffee beans with rich flavor.');
-insert into Categories (catID, name, description) values (12, 'Classic Black Trousers', 'Timeless black trousers for a smart and sophisticated look.');
-insert into Categories (catID, name, description) values (9, 'Non-Toxic Concrete Sealer', 'Eco-friendly sealer for protecting concrete surfaces.');
-insert into Categories (catID, name, description) values (9, 'Cinnamon Rolls', 'Sweet and gooey cinnamon rolls, ready to bake.');
-insert into Categories (catID, name, description) values (3, 'Pumpkin Seeds', 'Crunchy roasted pumpkin seeds, great for snacking.');
-insert into Categories (catID, name, description) values (10, 'Garlic and Herb Cream Cheese', 'Spreadable cream cheese with garlic and herbs.');
-insert into Categories (catID, name, description) values (10, 'Cheesy Broccoli Soup Mix', 'Just add water for a hearty cheese and broccoli soup in minutes.');
-insert into Categories (catID, name, description) values (3, 'Fall-Themed Table Runner', 'Decorative table runner perfect for autumn gatherings.');
-insert into Categories (catID, name, description) values (14, 'Miso Soup Mix', 'Instant miso soup mix, just add hot water for a warm meal.');
-insert into Categories (catID, name, description) values (4, 'Wireless Earbuds', 'True wireless earbuds with touch control.');
-insert into Categories (catID, name, description) values (9, 'Decorative LED Neon Sign', 'Bright, vibrant sign to add flair to any space.');
-insert into Categories (catID, name, description) values (10, 'Sweet Chili Thai Sauce', 'Tangy sweet chili sauce perfect for dipping or cooking.');
-insert into Categories (catID, name, description) values (4, 'Cereal Dispenser with Portion Control', 'Maintain freshness and dispense cereal easily.');
-insert into Categories (catID, name, description) values (14, 'Savory Italian Herbs', 'A blend of dried Italian herbs for cooking.');
-insert into Categories (catID, name, description) values (4, 'Savory Pumpkin Soup', 'Creamy pumpkin soup with spices');
-insert into Categories (catID, name, description) values (5, 'Comfortable Bed Pillow', 'Supportive pillow designed for a good night''s sleep.');
-insert into Categories (catID, name, description) values (9, 'Oats', 'Organic rolled oats, great for breakfast or baking.');
+
 
 
 insert into Collections (collectID, userID, title, description) values (1, 1, 'Frozen Acai Bowl', 'Healthy frozen acai bowl with toppings.');
