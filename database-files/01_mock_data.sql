@@ -372,8 +372,8 @@ insert into Reviews (recipeID, userID, review) values (37, 37, 'Nam ultrices, li
 insert into Reviews (recipeID, userID, review) values (38, 38, 'Proin eu mi. Nulla ac enim.');
 insert into Reviews (recipeID, userID, review) values (39, 39, 'Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.');
 insert into Reviews (recipeID, userID, review) values (40, 40, 'Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy.');
-insert into Reviews (recipeID, userID, review) values (1, 1, 'Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
-insert into Reviews (recipeID, userID, review) values (2, 2, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.');
+insert into Reviews (recipeID, userID, review) values (1, 2, 'Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.');
+insert into Reviews (recipeID, userID, review) values (2, 1, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.');
 insert into Reviews (recipeID, userID, review) values (3, 3, 'Cras in purus eu magna vulputate luctus.');
 insert into Reviews (recipeID, userID, review) values (4, 4, 'In congue. Etiam justo.');
 insert into Reviews (recipeID, userID, review) values (5, 5, 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.');
@@ -392,6 +392,7 @@ insert into Reviews (recipeID, userID, review) values (17, 17, 'Fusce lacus puru
 insert into Reviews (recipeID, userID, review) values (18, 18, 'Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.');
 insert into Reviews (recipeID, userID, review) values (19, 19, 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.');
 insert into Reviews (recipeID, userID, review) values (20, 20, 'Morbi a ipsum. Integer a nibh. In quis justo.');
+
 
 insert into UserReports (adminID, userID, reason) values (1, 1, 'Proin interdum mauris non ligula pellentesque ultrices.');
 insert into UserReports (adminID, userID, reason) values (2, 2, 'Morbi non lectus.');
