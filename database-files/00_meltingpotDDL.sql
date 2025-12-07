@@ -63,7 +63,7 @@ USE `MeltingPot`;
        picture MEDIUMTEXT,
        difficulty INT NOT NULL,
        recipeID INT PRIMARY KEY,
-       FOREIGN KEY (userID) references Users(userId),
+       FOREIGN KEY (userID) references Users(userID),
        FOREIGN KEY (catID) references Categories(catID)
    );
 
