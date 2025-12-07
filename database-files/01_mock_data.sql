@@ -1,7 +1,9 @@
+use MeltingPot;
 
-insert into Administrators (adminID, username, password) values (1, 'Christopher', 'Pfeffel');
-insert into Administrators (adminID, username, password) values (2, 'Carey', 'Adamo');
-insert into Administrators (adminID, username, password) values (3, 'Gilberta', 'Franssen');
+
+insert into Administrators (adminID, username, password) values (11, 'Christopher', 'Pfeffel');
+insert into Administrators (adminID, username, password) values (22, 'Carey', 'Adamo');
+insert into Administrators (adminID, username, password) values (33, 'Gilberta', 'Franssen');
 insert into Administrators (adminID, username, password) values (4, 'Tracey', 'Leatt');
 insert into Administrators (adminID, username, password) values (5, 'Nissy', 'Medland');
 
@@ -10,9 +12,6 @@ insert into DataAnalysts (analystID, username, password) values (2, 'cbilt1', 'l
 insert into DataAnalysts (analystID, username, password) values (3, 'bduigan2', 'iG3)AdU~3');
 insert into DataAnalysts (analystID, username, password) values (4, 'qmonard3', 'yU8"En#M');
 insert into DataAnalysts (analystID, username, password) values (5, 'dlimerick4', 'tY2_BTHaNBVwfr');
-
-
-
 
 insert into Users (userID, username, password, bio) values (1, 'Doug', 'eS3/m?|rn~', 'Integer ac neque.');
 insert into Users (userID, username, password, bio) values (2, 'Davide', 'wE2/L"cD{{!fm_ox', 'Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis.');
