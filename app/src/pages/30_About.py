@@ -8,12 +8,9 @@ st.write("# About this App")
 
 st.markdown(
     """
-    This is a demo app for Data and Software in International Government and Politics Dialogue 2025 Project Course.  
+    MeltingPot allows users to share recipes and ingredients for any culinary processes and ideas. This enables others to follow along with the necessary steps and ultimately rate them on a scale. 
+    MeltingPot, as implied in its name, will provide a space for people of different cultures to come together, exchanging culinary delights. A recipe contains many helpful information such as ingredients, measurements, procedures, steps, images, ratings, and feedback, to recreate the dish. In order to establish a network of cooking ideas, it is essential that we manage and present the information in a way that is easy to understand and navigate. 
 
-    The goal of this demo is to provide information on the tech stack 
-    being used as well as demo some of the features of the various platforms. 
-
-    Stay tuned for more information and features to come!
     """
 )
 
