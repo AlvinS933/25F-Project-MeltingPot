@@ -133,7 +133,7 @@ insert into Recipes (recipeID, userID, name, description, steps, picture, diffic
 insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (99, 35, 'Francis', 'Professional grooming table with adjustable height.', 'error: divided by 0', 'AZ1147', 5, 14);
 insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (50, 36, 'Olva', 'Soft and strong toilet paper for everyday use.', 'error: divided by 0', 'UA8934', 3, 8);
 insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (92, 37, 'Nickie', 'Foldable table for working with laptops anywhere.', 'error: divided by 0', 'QR6999', 5, 6);
-insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (79, 38, 'Theresita', 'Stylish leather ankle boots with a block heel, perfect for fall styling.', 'error: divided by 0', 'EK4968', 4, 4);
+insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (28, 38, 'Theresita', 'Stylish leather ankle boots with a block heel, perfect for fall styling.', 'error: divided by 0', 'EK4968', 4, 4);
 insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (32, 39, 'Roberta', 'Retro-style graphic tee with a soft wash for a vintage feel.', 'error: divided by 0', 'QF3102', 1, 4);
 insert into Recipes (recipeID, userID, name, description, steps, picture, difficulty, catID) values (89, 40, 'Egon', 'Portable case to organize and protect jewelry on trips.', 'error: divided by 0', 'KE5476', 4, 9);
 
