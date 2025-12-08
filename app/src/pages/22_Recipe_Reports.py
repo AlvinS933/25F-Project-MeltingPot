@@ -20,3 +20,6 @@ except:
     st.write('# ERROR! CANNOT GET USER DATA!')
 
 st.title("Your Recipe Reports")
+
+for i in userJSON:
+    st.write("Recipe ID: " + str(i["recipeID"]) + ", REASON: " + i["reason"])
