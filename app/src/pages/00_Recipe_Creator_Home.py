@@ -29,22 +29,22 @@ else:
 
 st.write(userJSON["bio"])
 
-if st.button('My Recipies', 
+if st.button('My Recipes', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/30_About.py')
+  st.switch_page('pages/01_UserRecipies.py')
 
-if st.button('Create New Recipie', 
+if st.button('Create New Recipe', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/30_About.py')
+  st.switch_page('pages/02_CreateNewRecipie.py')
 
 if st.button('My Collections', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/30_About.py')
+  st.switch_page('pages/03_UserCollections.py')
 
 if st.button('Create New Collection', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/30_About.py')
+  st.switch_page('pages/04_CreateNewCollection.py')
