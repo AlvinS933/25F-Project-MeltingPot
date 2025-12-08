@@ -26,4 +26,5 @@ for r in userJSON:
     if st.button(bTxt, 
                 type='primary',
                 use_container_width=True):
-        st.switch_page('pages/30_About.py')
+        st.session_state["selected_recipe_id"] = str(r["recipeID"])
+        st.switch_page('pages/14_Recipe_Details.py')
