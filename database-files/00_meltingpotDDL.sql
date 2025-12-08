@@ -75,7 +75,7 @@ USE `MeltingPot`;
        reason VARCHAR (50),
        PRIMARY KEY (adminID, recipeID),
        FOREIGN KEY (adminID) references Administrators(adminID),
-       FOREIGN KEY (recipeID) references Recipes(recipeID)
+       FOREIGN KEY (recipeID) references Recipes(recipeID) ON DELETE CASCADE
    );
 
 
@@ -96,7 +96,7 @@ USE `MeltingPot`;
        userID INT NOT NULL,
        rating INT NOT NULL,
        PRIMARY KEY (recipeID, userID),
-       FOREIGN KEY (recipeID) references Recipes(recipeID),
+       FOREIGN KEY (recipeID) references Recipes(recipeID) ON DELETE CASCADE,
        FOREIGN KEY (userID) references Users(userID)
    );
 
@@ -116,7 +116,7 @@ USE `MeltingPot`;
        collectID INT NOT NULL,
        tagID INT NOT NULL,
        PRIMARY KEY (collectID, tagID),
-       FOREIGN KEY (collectID) references Collections(collectID),
+       FOREIGN KEY (collectID) references Collections(collectID) ON DELETE CASCADE,
        FOREIGN KEY (tagID) references Tags(tagID)
    );
 
@@ -127,7 +127,7 @@ USE `MeltingPot`;
        userID INT NOT NULL,
        review TEXT,
        PRIMARY KEY (recipeID, userID),
-       FOREIGN KEY (recipeID) references Recipes(recipeID),
+       FOREIGN KEY (recipeID) references Recipes(recipeID) ON DELETE CASCADE,
        FOREIGN KEY (userID) references Users(userID)
    );
 
@@ -138,7 +138,7 @@ USE `MeltingPot`;
        recipeID INT,
        PRIMARY KEY (collectID, recipeID),
        FOREIGN KEY (collectID) references Collections(collectID),
-       FOREIGN KEY (recipeID) references Recipes(recipeID)
+       FOREIGN KEY (recipeID) references Recipes(recipeID) ON DELETE CASCADE
    );
 
 
@@ -147,7 +147,7 @@ USE `MeltingPot`;
        recipeID INT NOT NULL,
        ingrID INT NOT NULL,
        PRIMARY KEY (recipeID, ingrID),
-       FOREIGN KEY (recipeID) references Recipes(recipeID),
+       FOREIGN KEY (recipeID) references Recipes(recipeID) ON DELETE CASCADE,
        FOREIGN KEY (ingrID) references Ingredients(ingrID)
    );
 
@@ -157,6 +157,6 @@ USE `MeltingPot`;
        recipeID INT NOT NULL,
        tagID INT NOT NULL,
        PRIMARY KEY (recipeID, tagID),
-       FOREIGN KEY (recipeID) references Recipes(recipeID),
+       FOREIGN KEY (recipeID) references Recipes(recipeID) ON DELETE CASCADE,
        FOREIGN KEY (tagID) references Tags(tagID)
    );
