@@ -103,3 +103,11 @@ def delete_rating(recipe_id, user_id):
         return jsonify({'message': 'Rating deleted successfully'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+# Get top 5 ratings
+@ratings.route('/ratings/topRated', methods=['GET'])
+def topRated():
+    cursor = db.get_db().cursor()
+    cursor.execute("SELECT Ratings.recipeID, AVG(rating) as avgRating FROM Ratings JOIN Recipes ON Ratings.recipeID = Recipes.recipeID GROUP BY Ratings.recipeID ORDER BY avgRating DESC LIMIT 5")
+    ratings_data = cursor.fetchall()
+    return jsonify(ratings_data)
