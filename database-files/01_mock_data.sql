@@ -628,7 +628,7 @@ insert into RecipeIngredients (recipeID, ingrID) values (1, 30);
 insert into RecipeIngredients (recipeID, ingrID) values (26, 40);
 insert into RecipeIngredients (recipeID, ingrID) values (15, 23);
 insert into RecipeIngredients (recipeID, ingrID) values (10, 40);
-insert into RecipeIngredients (recipeID, ingrID) values (26, 40);
+insert into RecipeIngredients (recipeID, ingrID) values (26, 4);
 insert into RecipeIngredients (recipeID, ingrID) values (15, 29);
 insert into RecipeIngredients (recipeID, ingrID) values (11, 29);
 insert into RecipeIngredients (recipeID, ingrID) values (39, 40);
