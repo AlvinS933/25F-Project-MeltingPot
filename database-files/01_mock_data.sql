@@ -943,7 +943,7 @@ insert into CollectionRecipes (collectID, recipeID) values (18, 3);
 insert into CollectionRecipes (collectID, recipeID) values (25, 3);
 insert into CollectionRecipes (collectID, recipeID) values (33, 23);
 insert into CollectionRecipes (collectID, recipeID) values (19, 27);
-insert into CollectionRecipes (collectID, recipeID) values (37, 28);
+insert into CollectionRecipes (collectID, recipeID) values (37, 38);
 insert into CollectionRecipes (collectID, recipeID) values (20, 6);
 
 
