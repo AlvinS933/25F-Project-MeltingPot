@@ -147,5 +147,11 @@ def get_rr(admin_id):
     admins_data = cursor.fetchall()
     return jsonify(admins_data)
 
-
-
+# get user reports by admin id
+@users.route('/admins/ur/<int:admin_id>', methods=['GET'])
+def get_ur(admin_id):
+    cursor = db.get_db().cursor()
+    query = 'SELECT userID, reason FROM Administrators JOIN UserReports ON Administrators.adminID = UserReports.adminID WHERE UserReports.adminID = %s;'
+    cursor.execute(query, (admin_id,))
+    admins_data = cursor.fetchall()
+    return jsonify(admins_data)
