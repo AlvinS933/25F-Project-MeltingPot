@@ -780,7 +780,7 @@ insert into RecipeTags (recipeID, tagID) values (24, 20);
 insert into RecipeTags (recipeID, tagID) values (18, 35);
 insert into RecipeTags (recipeID, tagID) values (34, 26);
 insert into RecipeTags (recipeID, tagID) values (3, 18);
-insert into RecipeTags (recipeID, tagID) values (19, 34);
+insert into RecipeTags (recipeID, tagID) values (13, 34);
 insert into RecipeTags (recipeID, tagID) values (33, 23);
 insert into RecipeTags (recipeID, tagID) values (17, 1);
 insert into RecipeTags (recipeID, tagID) values (28, 14);
@@ -889,7 +889,7 @@ insert into CollectionRecipes (collectID, recipeID) values (9, 6);
 insert into CollectionRecipes (collectID, recipeID) values (40, 30);
 insert into CollectionRecipes (collectID, recipeID) values (28, 19);
 insert into CollectionRecipes (collectID, recipeID) values (3, 1);
-insert into CollectionRecipes (collectID, recipeID) values (22, 11);
+insert into CollectionRecipes (collectID, recipeID) values (2, 12);
 insert into CollectionRecipes (collectID, recipeID) values (32, 29);
 insert into CollectionRecipes (collectID, recipeID) values (8, 36);
 insert into CollectionRecipes (collectID, recipeID) values (28, 31);
@@ -904,7 +904,7 @@ insert into CollectionRecipes (collectID, recipeID) values (12, 15);
 insert into CollectionRecipes (collectID, recipeID) values (1, 12);
 insert into CollectionRecipes (collectID, recipeID) values (40, 4);
 insert into CollectionRecipes (collectID, recipeID) values (25, 23);
-insert into CollectionRecipes (collectID, recipeID) values (9, 12);
+insert into CollectionRecipes (collectID, recipeID) values (8, 10);
 insert into CollectionRecipes (collectID, recipeID) values (34, 30);
 insert into CollectionRecipes (collectID, recipeID) values (9, 9);
 insert into CollectionRecipes (collectID, recipeID) values (1, 20);
@@ -933,7 +933,7 @@ insert into CollectionRecipes (collectID, recipeID) values (32, 21);
 insert into CollectionRecipes (collectID, recipeID) values (22, 3);
 insert into CollectionRecipes (collectID, recipeID) values (26, 22);
 insert into CollectionRecipes (collectID, recipeID) values (13, 21);
-insert into CollectionRecipes (collectID, recipeID) values (1, 9);
+insert into CollectionRecipes (collectID, recipeID) values (8, 9);
 insert into CollectionRecipes (collectID, recipeID) values (20, 25);
 insert into CollectionRecipes (collectID, recipeID) values (3, 29);
 insert into CollectionRecipes (collectID, recipeID) values (31, 1);
@@ -943,7 +943,11 @@ insert into CollectionRecipes (collectID, recipeID) values (18, 3);
 insert into CollectionRecipes (collectID, recipeID) values (25, 3);
 insert into CollectionRecipes (collectID, recipeID) values (33, 23);
 insert into CollectionRecipes (collectID, recipeID) values (19, 27);
+<<<<<<< HEAD
 insert into CollectionRecipes (collectID, recipeID) values (37, 38);
+=======
+insert into CollectionRecipes (collectID, recipeID) values (35, 28);
+>>>>>>> 3840dd697e18eb5037bb973587b34f6ef1a9b93d
 insert into CollectionRecipes (collectID, recipeID) values (20, 6);
 
 
