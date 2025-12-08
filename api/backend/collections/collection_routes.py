@@ -9,11 +9,11 @@ collections = Blueprint("collections", __name__)
 def get_user_collections(userID):
     cursor = db.get_db().cursor()
     the_query = '''
-        SELECT collectID, userID, name, description, createdAt
+        SELECT collectID, userID, title, description
         FROM Collections
         WHERE userID = %s
     '''
-    cursor.execute(the_query, (userID,))
+    cursor.execute(the_query, (userID))
     theDATA = cursor.fetchall()
     cursor.close()
     
