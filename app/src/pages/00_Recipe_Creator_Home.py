@@ -39,6 +39,11 @@ if st.button('Create New Recipe',
              use_container_width=True):
   st.switch_page('pages/02_CreateNewRecipe.py')
 
+if st.button('Edit/Delete Recipes', 
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/06_UserRecipesED.py')
+
 if st.button('My Collections', 
              type='primary',
              use_container_width=True):
