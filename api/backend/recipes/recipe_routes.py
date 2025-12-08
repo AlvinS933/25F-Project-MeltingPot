@@ -19,6 +19,14 @@ def get_recipes_by_user(user_id):
     recipes_data = cursor.fetchall()
     return jsonify(recipes_data)
 
+# Get the maximum recipe ID (so that +1 will give a new ID)
+@recipes.route('/recipes/maxID', methods=['GET'])
+def get_recipes_by_user():
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT MAX(recipeID) FROM Recipes')
+    recipes_data = cursor.fetchall()
+    return jsonify(recipes_data)
+
 # Get a specific recipe by ID
 @recipes.route('/recipes/<int:recipe_id>', methods=['GET'])
 def get_recipe(recipe_id):
