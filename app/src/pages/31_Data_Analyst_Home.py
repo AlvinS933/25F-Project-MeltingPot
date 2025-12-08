@@ -17,7 +17,7 @@ try:
 except:
     analystJSON = []
     st.write('# ERROR! CANNOT GET DATA ANALYST DATA!')
-
+st.title(f"Welcome data analyst, {st.session_state['first_name']}.")
 if st.button('Highest Rated Recipes',
              type='primary',
              use_container_width=True):
