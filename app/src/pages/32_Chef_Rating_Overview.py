@@ -12,19 +12,12 @@ SideBarLinks()
 st.title('Chef Rating Overview')
 
 try:
-    rURL = 'http://web-api:4000/da/chefs/average_ratings'
+    rURL = 'http://web-api:4000/rat/ratings/topRated'
     response = requests.get(rURL)
     chefsJSON = response.json() if response.status_code == 200 else []
 except:
     chefsJSON = []
     st.write('ERROR! CANNOT GET CHEF RATING DATA!')
 
-if not chefsJSON:
-    st.write('No chef rating data available.')
-else:
-    for c in chefsJSON:
-        name = str(c['username'])
-        avg = str(c['avg_rating'])
-        count = str(c['rating_count'])
-        bTxt = name + ' - Avg Rating: ' + avg + ' (' + count + ' ratings)'
-        st.button(bTxt, type='primary', use_container_width=True)
+for c in chefsJSON:
+    st.write(c["recipeID"] + " AVG RATING: " + c["avgRating"])
