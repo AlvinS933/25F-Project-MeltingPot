@@ -19,9 +19,22 @@ except:
 
 st.title("Chef Rating Overview")
 
+st.subheader("Chefs With High Average Ratings")
+
 for c in chefsJSON:
-    name = str(c["username"])
-    avg = str(c["avgRating"])
-    count = str(c["numRatings"])
-    bTxt = name + " - Avg Rating: " + avg + " (" + count + " ratings)"
-    st.button(bTxt, use_container_width=True)
+    if "rating_group" in c and c["rating_group"] == "High":
+        name = str(c["username"])
+        avg = str(c["avg_rating"])
+        count = str(c["rating_count"])
+        bTxt = name + " - Avg Rating: " + avg + " (" + count + " ratings)"
+        st.button(bTxt, use_container_width=True)
+
+st.subheader("Chefs With Consistently Poor Ratings")
+
+for c in chefsJSON:
+    if "rating_group" in c and c["rating_group"] == "Low":
+        name = str(c["username"])
+        avg = str(c["avg_rating"])
+        count = str(c["rating_count"])
+        bTxt = name + " - Avg Rating: " + avg + " (" + count + " ratings)"
+        st.button(bTxt, use_container_width=True)
