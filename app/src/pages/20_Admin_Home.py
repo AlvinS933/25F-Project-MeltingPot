@@ -25,15 +25,15 @@ st.title(f"Welcome administrator, {st.session_state['first_name']}.")
 if st.button('View User Reports',
              type='primary',
              use_container_width=True):
-  st.switch_page('')
+  st.switch_page('pages/21_user_reports.py')
 
 if st.button('View Recipe Reports',
              type='primary',
              use_container_width=True):
-  st.switch_page('')
+  st.switch_page('pages/22_recipe_reports.py')
 
 if st.button('Delete Recipes',
              type='primary',
              use_container_width=True):
-  st.switch_page('')
+  st.switch_page('pages/23_del_recipes.py')
 
