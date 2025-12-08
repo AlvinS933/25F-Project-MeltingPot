@@ -904,7 +904,7 @@ insert into CollectionRecipes (collectID, recipeID) values (12, 15);
 insert into CollectionRecipes (collectID, recipeID) values (1, 12);
 insert into CollectionRecipes (collectID, recipeID) values (40, 4);
 insert into CollectionRecipes (collectID, recipeID) values (25, 23);
-insert into CollectionRecipes (collectID, recipeID) values (9, 10);
+insert into CollectionRecipes (collectID, recipeID) values (9, 12);
 insert into CollectionRecipes (collectID, recipeID) values (34, 30);
 insert into CollectionRecipes (collectID, recipeID) values (9, 9);
 insert into CollectionRecipes (collectID, recipeID) values (1, 20);
