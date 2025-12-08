@@ -12,7 +12,7 @@ SideBarLinks()
 
 try:
     uID = st.session_state['user_id']
-    st.write("trying to request " + rURL)
+    rURL = 'http://web-api:4000/r/recipes/user/' + str(uID)
     user_response = requests.get(rURL)
     userJSON = user_response.json() if user_response.status_code == 200 else []
 except:
