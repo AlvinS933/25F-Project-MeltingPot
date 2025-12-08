@@ -19,11 +19,12 @@ except:
     userJSON = []
     st.write('# ERROR! CANNOT GET USER DATA!')
 
-st.title(f"Welcome Political Strategist, {st.session_state['first_name']}.")
+st.title("My Recipes")
 
-st.write(userJSON)
-
-if st.button('Example button.', 
-             type='primary',
-             use_container_width=True):
-  st.switch_page('pages/30_About.py')
+for r in userJSON:
+    bTxt = r["name"] + " - " + r["description"][:25] + "..."
+    if st.button(bTxt, 
+                type='primary',
+                use_container_width=True):
+        st.session_state["selected_recipe_id"] = str(r["recipeID"])
+        st.switch_page('pages/14_Recipe_Details.py')
