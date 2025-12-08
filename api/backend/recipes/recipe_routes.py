@@ -21,7 +21,7 @@ def get_recipes_by_user(user_id):
 
 # Get the maximum recipe ID (so that +1 will give a new ID)
 @recipes.route('/recipes/maxID', methods=['GET'])
-def get_recipes_by_user():
+def maxID():
     cursor = db.get_db().cursor()
     cursor.execute('SELECT MAX(recipeID) AS MaxID FROM Recipes')
     recipes_data = cursor.fetchall()
