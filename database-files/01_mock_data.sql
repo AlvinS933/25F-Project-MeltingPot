@@ -943,11 +943,8 @@ insert into CollectionRecipes (collectID, recipeID) values (18, 3);
 insert into CollectionRecipes (collectID, recipeID) values (25, 3);
 insert into CollectionRecipes (collectID, recipeID) values (33, 23);
 insert into CollectionRecipes (collectID, recipeID) values (19, 27);
-<<<<<<< HEAD
 insert into CollectionRecipes (collectID, recipeID) values (37, 38);
-=======
 insert into CollectionRecipes (collectID, recipeID) values (35, 28);
->>>>>>> 3840dd697e18eb5037bb973587b34f6ef1a9b93d
 insert into CollectionRecipes (collectID, recipeID) values (20, 6);
 
 
