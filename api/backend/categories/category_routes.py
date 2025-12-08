@@ -80,5 +80,5 @@ def delete_category(cat_id):
 @categories.route('/categories/top', methods=['GET'])
 def top_cats():
     cursor = db.get_db().cursor()
-    cursor.execute('SELECT Categories.name, COUNT(*) AS RecipeCount FROM Categories JOIN Recipes ON Categories.catID = Recipes.catID GROUP BY Categories.catID ORDER BY RecipeCount DESC')
+    cursor.execute('SELECT Categories.name, COUNT(*) AS RecipeCount FROM Categories JOIN Recipes ON Categories.catID = Recipes.catID GROUP BY Categories.catID ORDER BY RecipeCount DESC LIMIT 5')
     return jsonify(cursor.fetchall())
