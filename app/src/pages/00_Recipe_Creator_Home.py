@@ -49,7 +49,7 @@ if st.button('My Collections',
              use_container_width=True):
   st.switch_page('pages/03_UserCollections.py')
 
-if st.button('Create New Collection', 
-             type='primary',
-             use_container_width=True):
-  st.switch_page('pages/04_CreateNewCollection.py')
+#if st.button('Create New Collection', 
+             #type='primary',
+             #use_container_width=True):
+  #st.switch_page('pages/04_CreateNewCollection.py')

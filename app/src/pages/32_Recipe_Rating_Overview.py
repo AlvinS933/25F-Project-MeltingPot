@@ -20,4 +20,4 @@ except:
     st.write('ERROR! CANNOT GET CHEF RATING DATA!')
 
 for c in chefsJSON:
-    st.write(str(c["recipeID"]) + " AVG RATING: " + str(c["avgRating"]))
+    st.write("Recipe ID: " + str(c["recipeID"]) + ", AVG RATING: " + str(c["avgRating"]))
