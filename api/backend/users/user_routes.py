@@ -129,3 +129,11 @@ def delete_user(user_id):
         return jsonify({'message': 'User deleted successfully'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+# Top 5 Highest Rated Users
+@users.route('/users/top', methods=['GET'])
+def get_highest_rated():
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT Ratings.userID, AVG(rating) as avgRating FROM Ratings JOIN Users On Ratings.userID = Users.userID GROUP BY Ratings.userID ORDER BY avgRating DESC LIMIT 5')
+    users_data = cursor.fetchall()
+    return jsonify(users_data)
