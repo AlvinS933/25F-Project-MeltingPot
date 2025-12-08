@@ -80,3 +80,4 @@ if st.button('Delete',
     cURL = 'http://web-api:4000/r/recipes/' + str(rID)
     c_response = requests.delete(cURL)
     st.switch_page('pages/00_Recipe_Creator_Home.py')
+

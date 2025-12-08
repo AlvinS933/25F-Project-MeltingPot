@@ -27,3 +27,5 @@ for c in userJSON:
                 use_container_width=True):
         st.session_state['select_collect'] = c["collectID"]
         st.switch_page('pages/05_ViewCollection.py')
+if st.button("⬅️ Back to Home", use_container_width=True):
+    st.switch_page("pages/00_Recipe_Creator_Home.py")

@@ -120,7 +120,3 @@ try:
 
 except requests.exceptions.RequestException as e:
     st.error(f"Error: {str(e)}")
-
-# Navigation
-if st.button("⬅️ Back to Home", use_container_width=True):
-    st.switch_page("Home.py")
