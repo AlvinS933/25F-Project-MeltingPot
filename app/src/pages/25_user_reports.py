@@ -19,4 +19,4 @@ except:
     userJSON = []
     st.write('# ERROR! CANNOT GET USER DATA!')
 
-st.title("Your Recipe Reports")
+st.title("Your User Reports")
