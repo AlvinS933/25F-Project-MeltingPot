@@ -28,7 +28,7 @@ if st.button('Highest Rated Chefs',
              use_container_width=True):
     st.switch_page('pages/33_Chef_Highest_Rated.py')
 
-if st.button('User Rating Explorer',
+if st.button('Most Popular Categories',
              type='primary',
              use_container_width=True):
-    st.switch_page('pages/35_User_Rating_Explorer.py')
+    st.switch_page('pages/34_Pop_Cats.py')
