@@ -140,7 +140,7 @@ def get_highest_rated():
 
 # get recipe reports by admin id
 @users.route('/admins/rr/<int:admin_id>', methods=['GET'])
-def get_all_admins(admin_id):
+def get_rr(admin_id):
     cursor = db.get_db().cursor()
     query = 'SELECT recipeID, reason FROM Administrators JOIN RecipeReports ON Administrators.adminID = RecipeReports.adminID WHERE RecipeReports.adminID = %s'
     cursor.execute(query, (admin_id,))
