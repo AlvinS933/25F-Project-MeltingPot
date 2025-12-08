@@ -25,4 +25,5 @@ for c in userJSON:
     if st.button(c["title"], 
                 type='primary',
                 use_container_width=True):
-        st.switch_page('pages/30_About.py')
+        st.session_state['select_collect'] = c["collectID"]
+        st.switch_page('pages/05_ViewCollection.py')
