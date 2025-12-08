@@ -39,3 +39,5 @@ for r in altJSON:
                 use_container_width=True):
         st.session_state["selected_recipe_id"] = str(r["recipeID"])
         st.switch_page('pages/14_Recipe_Details.py')
+if st.button("⬅️ Back to Home", use_container_width=True):
+    st.switch_page("pages/00_Recipe_Creator_Home.py")

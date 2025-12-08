@@ -71,3 +71,5 @@ if st.button('Create',
     cURL = 'http://web-api:4000/r/recipes'
     c_response = requests.post(cURL, json=package)
     st.switch_page('pages/00_Recipe_Creator_Home.py')
+if st.button("⬅️ Back to Home", use_container_width=True):
+    st.switch_page("pages/00_Recipe_Creator_Home.py")
