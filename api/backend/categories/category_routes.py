@@ -75,3 +75,10 @@ def delete_category(cat_id):
         return jsonify({'message': 'Category deleted'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+# Top 5 categories
+@categories.route('/categories/top', methods=['GET'])
+def top_cats():
+    cursor = db.get_db().cursor()
+    cursor.execute('SELECT Categories.name, COUNT(*) AS RecipeCount FROM Categories JOIN Recipes ON Categories.catID = Recipes.catID GROUP BY Categories.catID ORDER BY RecipeCount DESC')
+    return jsonify(cursor.fetchall())
