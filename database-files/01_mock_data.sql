@@ -889,7 +889,7 @@ insert into CollectionRecipes (collectID, recipeID) values (9, 6);
 insert into CollectionRecipes (collectID, recipeID) values (40, 30);
 insert into CollectionRecipes (collectID, recipeID) values (28, 19);
 insert into CollectionRecipes (collectID, recipeID) values (3, 1);
-insert into CollectionRecipes (collectID, recipeID) values (2, 11);
+insert into CollectionRecipes (collectID, recipeID) values (22, 11);
 insert into CollectionRecipes (collectID, recipeID) values (32, 29);
 insert into CollectionRecipes (collectID, recipeID) values (8, 36);
 insert into CollectionRecipes (collectID, recipeID) values (28, 31);
