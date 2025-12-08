@@ -1,6 +1,6 @@
 import logging
 logger = logging.getLogger(__name__)
-
+import requests
 import streamlit as st
 from modules.nav import SideBarLinks
 
@@ -10,8 +10,8 @@ st.set_page_config(layout = 'wide')
 SideBarLinks()
 
 try:
-    uID = st.session_state['user_id']
-    rURL = '' + str(uID)
+    admin_id = st.session_state['admin_id']
+    rURL = f"http://web-api:4000/u/admins/{admin_id}"  
     user_response = requests.get(rURL)
     userJSON = user_response.json() if user_response.status_code == 200 else []
 except:
@@ -20,7 +20,7 @@ except:
 
 st.title(f"Welcome administrator, {st.session_state['first_name']}.")
 
-st.write(userJSON["bio"])
+#st.write(userJSON["bio"])
 
 if st.button('View User Reports',
              type='primary',
