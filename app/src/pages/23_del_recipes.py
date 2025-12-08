@@ -20,4 +20,4 @@ if st.button('DELETE.',
              use_container_width=True):
     cURL = 'http://web-api:4000/r/recipes/' + str(num)
     c_response = requests.delete(cURL)
-    st.switch_page('pages/00_Recipe_Creator_Home.py')
+    st.switch_page('pages/20_Admin_Home.py')
