@@ -23,3 +23,6 @@ st.title("Your Recipe Reports")
 
 for i in userJSON:
     st.write("Recipe ID: " + str(i["recipeID"]) + ", REASON: " + i["reason"])
+
+if userJSON == []:
+    st.write("You don't have any assigned recipe reports. :)")
