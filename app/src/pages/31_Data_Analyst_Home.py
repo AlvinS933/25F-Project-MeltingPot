@@ -18,22 +18,15 @@ except:
     analystJSON = []
     st.write('# ERROR! CANNOT GET DATA ANALYST DATA!')
 
-
-
-if st.button('Chef Rating Overview',
+if st.button('Highest Rated Recipes',
              type='primary',
              use_container_width=True):
-    st.switch_page('pages/32_Chef_Rating_Overview.py')
+    st.switch_page('pages/32_Recipe_Rating_Overview.py')
 
-if st.button('Popular Recipe Categories',
+if st.button('Highest Rated Chefs',
              type='primary',
              use_container_width=True):
-    st.switch_page('pages/33_Popular_Categories.py')
-
-if st.button('Trend Graphs and Monthly Comparison',
-             type='primary',
-             use_container_width=True):
-    st.switch_page('pages/34_Trend_Graphs.py')
+    st.switch_page('pages/33_Chef_Highest_Rated.py')
 
 if st.button('User Rating Explorer',
              type='primary',
