@@ -17,8 +17,17 @@ try:
     userJSON = user_response.json() if user_response.status_code == 200 else []
 except:
     userJSON = []
+    st.write('# ERROR! CANNOT GET USER DATA!')
 
 st.title(f"Welcome to the Creator Menu, {st.session_state['first_name']}.")
+
+vStatus = str(userJSON["verified"])
+if vStatus == "0":
+   st.write('### Unverified')
+else:
+   st.write('### Verified')
+
+st.write(userJSON["bio"])
 
 if st.button('My Recipies', 
              type='primary',
