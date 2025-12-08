@@ -1067,7 +1067,7 @@ insert into CollectionTags (collectID, tagID) values (4, 20);
 insert into CollectionTags (collectID, tagID) values (24, 37);
 insert into CollectionTags (collectID, tagID) values (12, 30);
 insert into CollectionTags (collectID, tagID) values (10, 17);
-insert into CollectionTags (collectID, tagID) values (38, 27);
+insert into CollectionTags (collectID, tagID) values (38, 40);
 insert into CollectionTags (collectID, tagID) values (33, 11);
 insert into CollectionTags (collectID, tagID) values (34, 31);
 insert into CollectionTags (collectID, tagID) values (33, 6);
