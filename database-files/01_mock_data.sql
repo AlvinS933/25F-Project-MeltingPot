@@ -732,7 +732,7 @@ insert into RecipeTags (recipeID, tagID) values (36, 29);
 insert into RecipeTags (recipeID, tagID) values (14, 24);
 insert into RecipeTags (recipeID, tagID) values (17, 28);
 insert into RecipeTags (recipeID, tagID) values (10, 14);
-insert into RecipeTags (recipeID, tagID) values (11, 28);
+insert into RecipeTags (recipeID, tagID) values (10, 28);
 insert into RecipeTags (recipeID, tagID) values (8, 5);
 insert into RecipeTags (recipeID, tagID) values (4, 21);
 insert into RecipeTags (recipeID, tagID) values (11, 11);
