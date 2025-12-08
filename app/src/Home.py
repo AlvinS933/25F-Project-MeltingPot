@@ -111,6 +111,7 @@ st.write('---')
 
 # System Administrator
 st.write('#### 🛡️ System Administrator')
+st.write('(Admin ID 5 is known to have both user and recipe reports pending)')
 selected_admin = st.selectbox(
     'Select an Administrator',
     options=[f"{a['username']} (ID: {a['adminID']})" for a in admins],
