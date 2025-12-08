@@ -9,9 +9,31 @@ st.set_page_config(layout = 'wide')
 # Show appropriate sidebar links for the role of the currently logged in user
 SideBarLinks()
 
+try:
+    uID = st.session_state['user_id']
+    rURL = '' + str(uID)
+    user_response = requests.get(rURL)
+    userJSON = user_response.json() if user_response.status_code == 200 else []
+except:
+    userJSON = []
+    st.write('# ERROR! CANNOT GET USER DATA!')
+
 st.title(f"Welcome administrator, {st.session_state['first_name']}.")
 
-if st.button('Example button.', 
+st.write(userJSON["bio"])
+
+if st.button('View User Reports',
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/30_About.py')
+  st.switch_page('')
+
+if st.button('View Recipe Reports',
+             type='primary',
+             use_container_width=True):
+  st.switch_page('')
+
+if st.button('Delete Recipes',
+             type='primary',
+             use_container_width=True):
+  st.switch_page('')
+
