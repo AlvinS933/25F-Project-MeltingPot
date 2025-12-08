@@ -73,3 +73,10 @@ if st.button('Edit',
     cURL = 'http://web-api:4000/r/recipes/' + str(rID)
     c_response = requests.put(cURL, json=package)
     st.switch_page('pages/00_Recipe_Creator_Home.py')
+
+if st.button('Delete', 
+             type='primary',
+             use_container_width=True):
+    cURL = 'http://web-api:4000/r/recipes/' + str(rID)
+    c_response = requests.delete(cURL)
+    st.switch_page('pages/00_Recipe_Creator_Home.py')
