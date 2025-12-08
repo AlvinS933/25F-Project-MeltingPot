@@ -4,16 +4,15 @@ from modules.nav import SideBarLinks
 
 SideBarLinks()
 
-st.write("# About this App")
+st.write("# About MeltingPot")
 
 st.markdown(
     """
-    This is a demo app for Data and Software in International Government and Politics Dialogue 2025 Project Course.  
-
-    The goal of this demo is to provide information on the tech stack 
-    being used as well as demo some of the features of the various platforms. 
-
-    Stay tuned for more information and features to come!
+    MeltingPot allows users to rate & share recipes from around the world.
+    Users can follow your instructions, and rate the end result on a five-star scale. 
+    MeltingPot, as implied in its name, will provide a space for people of different cultures to come together, exchanging culinary delights.
+    Recipies contain helpful information such as ingredients, measurements, procedures, images, ratings, and reviews.
+    Any recipie or user account that does not follow terms of service may be deleted by an administrator at any time.
     """
 )
 

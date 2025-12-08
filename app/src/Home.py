@@ -18,9 +18,10 @@ st.session_state['authenticated'] = False
 SideBarLinks(show_home=True)
 
 logger.info("Loading the Home page of the app")
-st.title('MeltingPot Recipe Sharing Platform')
+st.title('MeltingPot')
+st.write('### Share Your Recipies with the World!')
 st.write('\n\n')
-st.write('### Welcome! Please select your user type and login')
+st.write('#### Welcome. Please select your user type and login')
 
 # Fetch users from different tables
 try:
