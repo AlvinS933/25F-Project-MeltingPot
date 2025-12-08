@@ -104,8 +104,8 @@ if st.button('Login as Data Analyst', type='primary', use_container_width=True):
     st.session_state['analyst_id'] = analyst_id
     st.session_state['username'] = username
     logger.info(f"Logging in as Data Analyst: {username}")
-    # CHANGED FROM 30 TO 31 as 30 is being used by about.
-    st.switch_page('pages/31_Data_Analyst_Home.py')
+    # CHANGED FROM 30 TO 40 as 30 is being used by about.
+    st.switch_page('pages/40_Data_Analyst_Home.py')
 
 st.write('---')
 
