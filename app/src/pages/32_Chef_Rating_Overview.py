@@ -9,7 +9,7 @@ st.set_page_config(layout='wide')
 
 SideBarLinks()
 
-st.title('Chef Rating Overview')
+st.title('Top 5 Highest Rated Recipes')
 
 try:
     rURL = 'http://web-api:4000/rat/ratings/topRated'
