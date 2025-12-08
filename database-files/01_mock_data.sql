@@ -984,7 +984,7 @@ insert into CollectionTags (collectID, tagID) values (13, 13);
 insert into CollectionTags (collectID, tagID) values (16, 7);
 insert into CollectionTags (collectID, tagID) values (28, 34);
 insert into CollectionTags (collectID, tagID) values (5, 19);
-insert into CollectionTags (collectID, tagID) values (34, 32);
+insert into CollectionTags (collectID, tagID) values (40, 32);
 insert into CollectionTags (collectID, tagID) values (1, 20);
 insert into CollectionTags (collectID, tagID) values (36, 1);
 insert into CollectionTags (collectID, tagID) values (9, 30);
