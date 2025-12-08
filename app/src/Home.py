@@ -19,7 +19,7 @@ SideBarLinks(show_home=True)
 
 logger.info("Loading the Home page of the app")
 st.title('MeltingPot')
-st.write('### Share Your Recipies with the World!')
+st.write('### Share Your Recipes with the World!')
 st.write('\n\n')
 st.write('#### Welcome. Please select your user type and login')
 
