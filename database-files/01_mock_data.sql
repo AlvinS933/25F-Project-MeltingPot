@@ -51,8 +51,8 @@ insert into DataAnalysts (analystID, username, password) values (7, 'Dennison', 
 insert into DataAnalysts (analystID, username, password) values (8, 'Wandie', 'sO4xvJn}+fog');
 insert into DataAnalysts (analystID, username, password) values (9, 'Felisha', 'zV2}h%?l92<OY/n');
 insert into DataAnalysts (analystID, username, password) values (10, 'Jeth', 'pQ5$WI(ojfjs');
-insert into DataAnalysts (analystID, username, password) values (11, 'Nanci', 'zC5"cnzX3N');
-insert into DataAnalysts (analystID, username, password) values (12, 'Haily', 'xF0)UXN"');
+insert into DataAnalysts (analystID, username, password) values (11, 'Nanci', 'zC5cnzX3N');
+insert into DataAnalysts (analystID, username, password) values (12, 'Haily', 'xF0)UXN');
 insert into DataAnalysts (analystID, username, password) values (13, 'Casandra', 'nX5+dC!kEO)$zpH(');
 insert into DataAnalysts (analystID, username, password) values (14, 'Jillayne', 'rR7<r!eTwL');
 insert into DataAnalysts (analystID, username, password) values (15, 'Rochester', 'pW8"2>o?Gq<ju');
@@ -70,8 +70,8 @@ insert into DataAnalysts (analystID, username, password) values (26, 'Else', 'iB
 insert into DataAnalysts (analystID, username, password) values (27, 'Rurik', 'oI2%maHLNp&|');
 insert into DataAnalysts (analystID, username, password) values (28, 'Pearle', 'jF0}~?Kbd%');
 insert into DataAnalysts (analystID, username, password) values (29, 'Elsworth', 'mL7{mt!K?z');
-insert into DataAnalysts (analystID, username, password) values (30, 'Fair', 'gF1~"qyG`"''Hb');
-insert into DataAnalysts (analystID, username, password) values (31, 'Amitie', 'vR0?k|@BQ|''+=y');
+insert into DataAnalysts (analystID, username, password) values (30, 'Fair', 'gF1~"qyG`"Hb');
+insert into DataAnalysts (analystID, username, password) values (31, 'Amitie', 'vR0?k|@BQ|+=y');
 insert into DataAnalysts (analystID, username, password) values (32, 'Rosella', 'hT3.7F$PVy=cZ,*T');
 insert into DataAnalysts (analystID, username, password) values (33, 'Lee', 'iV6~f~}y"');
 insert into DataAnalysts (analystID, username, password) values (34, 'William', 'cK8&#I77cT');
