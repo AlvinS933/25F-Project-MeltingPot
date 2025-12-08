@@ -137,3 +137,15 @@ def get_highest_rated():
     cursor.execute('SELECT Ratings.userID, AVG(rating) as avgRating FROM Ratings JOIN Users On Ratings.userID = Users.userID GROUP BY Ratings.userID ORDER BY avgRating DESC LIMIT 5')
     users_data = cursor.fetchall()
     return jsonify(users_data)
+
+# get recipe reports by admin id
+@users.route('/admins/rr/<int:admin_id>', methods=['GET'])
+def get_all_admins(admin_id):
+    cursor = db.get_db().cursor()
+    query = 'SELECT recipeID, reason FROM Administrators JOIN RecipeReports ON Administrators.adminID = RecipeReports.adminID WHERE RecipeReports.adminID = %s'
+    cursor.execute(query, (admin_id,))
+    admins_data = cursor.fetchall()
+    return jsonify(admins_data)
+
+
+
