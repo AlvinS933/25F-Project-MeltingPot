@@ -1012,7 +1012,7 @@ insert into CollectionTags (collectID, tagID) values (1, 21);
 insert into CollectionTags (collectID, tagID) values (19, 11);
 insert into CollectionTags (collectID, tagID) values (32, 9);
 insert into CollectionTags (collectID, tagID) values (27, 35);
-insert into CollectionTags (collectID, tagID) values (27, 24);
+insert into CollectionTags (collectID, tagID) values (26, 24);
 insert into CollectionTags (collectID, tagID) values (29, 16);
 insert into CollectionTags (collectID, tagID) values (37, 20);
 insert into CollectionTags (collectID, tagID) values (30, 20);
