@@ -32,12 +32,12 @@ st.write(userJSON["bio"])
 if st.button('My Recipes', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/01_UserRecipies.py')
+  st.switch_page('pages/01_UserRecipes.py')
 
 if st.button('Create New Recipe', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/02_CreateNewRecipie.py')
+  st.switch_page('pages/02_CreateNewRecipe.py')
 
 if st.button('My Collections', 
              type='primary',
