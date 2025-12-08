@@ -46,28 +46,28 @@ def create_recipe():
     user_id = data.get('userID')
     cat_id = data.get('catID')
     name = data.get('name')
-    description = data.get('description', '')
-    steps = data.get('steps', '')
+    description = data.get('description')
+    steps = data.get('steps')
     picture = data.get('picture')
-    difficulty = data.get('difficulty', 3)
+    difficulty = data.get('difficulty')
+    recipeID = data.get('recipeID')
     
     if not all([user_id, cat_id, name]):
         return jsonify({'error': 'Missing required fields'}), 400
     
     cursor = db.get_db().cursor()
     query = '''
-        INSERT INTO Recipes (userID, catID, name, description, steps, picture, difficulty)
-        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO Recipes (recipeID, userID, catID, name, description, steps, picture, difficulty)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
     '''
     
     try:
-        cursor.execute(query, (user_id, cat_id, name, description, steps, picture, difficulty))
+        cursor.execute(query, (recipeID, user_id, cat_id, name, description, steps, picture, difficulty))
         db.get_db().commit()
         
-        new_recipe_id = cursor.lastrowid
+        
         return jsonify({
-            'message': 'Recipe created successfully',
-            'recipeID': new_recipe_id
+            'message': 'Recipe created successfully'
         }), 201
     except Exception as e:
         return jsonify({'error': str(e)}), 500

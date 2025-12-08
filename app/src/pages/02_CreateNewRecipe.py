@@ -19,7 +19,19 @@ except:
     userJSON = []
     st.write('# ERROR! CANNOT GET USER DATA!')
 
+try:
+    rURL = 'http://web-api:4000/cat/categories'
+    cat_response = requests.get(rURL)
+    catJSON = cat_response.json() if cat_response.status_code == 200 else []
+except:
+    userJSON = []
+    st.write('# ERROR! CANNOT GET CAT DATA!')
+
 generatedID = str(int(userJSON[0]["MaxID"]) + 1)
+
+cats = []
+for c in catJSON:
+    cats.append(c["name"] + ":" + str(c["catID"]))
 
 st.title("Create New Recipe")
 st.write("### New ID: " + generatedID)
@@ -38,7 +50,24 @@ in4 = st.slider(
     value=3               # Default position
 )
 
-if st.button('Example button.', 
+in5 = st.selectbox(
+    "Category:",
+    cats
+)
+
+if st.button('Create', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/30_About.py')
+    package = {
+        "recipeID": generatedID,
+        "userID": uID,
+        "catID": in5.split(":")[1],
+        "name": in1,
+        "description": in2,
+        "steps": in3,
+        "picture": "",
+        "difficulty": in4
+    }
+    cURL = 'http://web-api:4000/r/recipes'
+    c_response = requests.post(cURL, json=package)
+    st.switch_page('pages/00_Recipe_Creator_Home.py')
